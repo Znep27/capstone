@@ -21,6 +21,7 @@ CREATE TABLE ratings (
   user_id INT NOT NULL,
   album_id INT NOT NULL,
   rating INT NOT NULL,
+  CHECK (rating BETWEEN 0 AND 11),
   PRIMARY KEY (rating),
   FOREIGN KEY (user_id) REFERENCES users (id),
   FOREIGN KEY (album_id) REFERENCES albums (album_id)
