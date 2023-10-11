@@ -9,11 +9,11 @@ CREATE TABLE users (
 CREATE TABLE albums (
   album_id INT NOT NULL,
   artist_id INT NOT NULL,
-  album_title VARCHAR(MAX) NOT NULL,
-  artist VARCHAR(MAX) NOT NULL,
+  album_title VARCHAR(100) NOT NULL,
+  artist VARCHAR(100) NOT NULL,
   release_year INT NOT NULL,
   genre VARCHAR(50),
-  cover_art VARCHAR(MAX),
+  cover_art VARCHAR(100),
   PRIMARY KEY (album_id)
 );
 
