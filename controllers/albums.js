@@ -32,8 +32,10 @@ const createAlbum = (req, res) => {
 }
 
 const updateAlbumById = (req, res) => {
-  let sql = "UPDATE ?? SET ?? = ? WHERE ?? = ?"
-  sql = mysql.format(sql, ["users", "user_name", req.body.user_name, "album_id", req.params.album_id])
+  let sql = "UPDATE ?? SET ?? = ?, ?? = ?, ?? = ?, ?? = ?, ?? = ?, ?? = ? WHERE ?? = ?"
+  sql = mysql.format(sql, ["albums", "artist_id", req.body.artist_id, "album_title", req.body.album_title, "artist",
+   req.body.artist, "release_year", req.body.release_year, "genre", req.body.genre, "cover_art", req.body.cover_art,
+    "album_id", req.params.album_id])
 
   pool.query(sql, (err, results) => {
     if (err) return handleSQLError(res, err)
@@ -43,11 +45,11 @@ const updateAlbumById = (req, res) => {
 
 const deleteAlbumById = (req, res) => {
   let sql = "DELETE FROM ?? WHERE ?? = ?"
-  sql = mysql.format(sql, ["users", "id", req.params.id])
+  sql = mysql.format(sql, ["albums", "album_id", req.params.album_id])
 
   pool.query(sql, (err, results) => {
     if (err) return handleSQLError(res, err)
-    return res.json({ message: `Deleted ${results.affectedRows} user(s)` });
+    return res.json({ message: `Deleted ${results.affectedRows} album(s)` });
   })
 }
 
