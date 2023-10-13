@@ -1,4 +1,5 @@
-DROP TABLE IF EXISTS users;
+
+DROP TABLE IF EXISTS users, albums, ratings;
 
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
@@ -18,11 +19,12 @@ CREATE TABLE albums (
 );
 
 CREATE TABLE ratings (
+  rating_id INT NOT NULL AUTO_INCREMENT,
   user_id INT NOT NULL,
   album_id INT NOT NULL,
   rating INT NOT NULL,
   CHECK (rating BETWEEN 0 AND 11),
-  PRIMARY KEY (rating),
+  PRIMARY KEY (rating_id),
   FOREIGN KEY (user_id) REFERENCES users (id)
     ON DELETE CASCADE,
   FOREIGN KEY (album_id) REFERENCES albums (album_id)
@@ -48,7 +50,7 @@ VALUES
   (2114340, 111733, "Plastic Surgery Disasters", "Dead Kennedys", "1982", "Punk Rock", "https://www.theaudiodb.com/images/media/album/thumb/plastic-surgery-disasters-4dd48d0717fb8.jpg");
 
 INSERT INTO ratings
-	(user_name)
+	(user_id, album_id, rating)
 VALUES 
   (1, 2159146, 10),
   (1, 2122363, 10),
